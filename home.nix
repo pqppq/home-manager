@@ -14,7 +14,11 @@
     pkgs.mise
     pkgs.neovim
     pkgs.bat
+    pkgs.hackgen-nf-font
   ];
+
+  # auto load fonts installed via home-manager
+  fonts.fontconfig.enable = true;
 
   home.shellAliases = {
     v = "nvim";
@@ -30,6 +34,11 @@
 
   programs.home-manager.enable = true;
 
+  programs.wezterm = {
+    enable = true;
+    extraConfig = builtins.readFile ~/dotfiles/.config/wezterm/wezterm.lua;
+  };
+
   programs.zsh = {
     envExtra = ''
       		export XDG_CONFIG_HOME=~/dotfiles/.config
@@ -40,8 +49,19 @@
     oh-my-zsh = {
       enable = true;
       plugins = [ "git" "z" "vi-mode" "copyfile" ];
-      theme = "minimal";
+      theme = "af-magic";
     };
+    plugins = [
+      {
+        name = "H-S-MW";
+        src = pkgs.fetchFromGitHub {
+          owner = "z-shell";
+          repo = "H-S-MW";
+          rev = "v1.0.0";
+          sha256 = "1d8yg38d2b9dd331yrdp8lj5qr6winr2vmdnc54c7nn8hz4n341n";
+        };
+      }
+    ];
   };
 
   programs.tmux = {
