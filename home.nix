@@ -15,6 +15,7 @@
     pkgs.neovim
     pkgs.bat
     pkgs.hackgen-nf-font
+    pkgs.tailscale
   ];
 
   # auto load fonts installed via home-manager
