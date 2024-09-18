@@ -16,6 +16,8 @@
     pkgs.bat
     pkgs.hackgen-nf-font
     pkgs.tailscale
+    pkgs.wget
+    pkgs.haskellPackages.hoogle
   ];
 
   # auto load fonts installed via home-manager
@@ -42,8 +44,9 @@
 
   programs.zsh = {
     envExtra = ''
-      		export XDG_CONFIG_HOME=~/dotfiles/.config
-      	'';
+            		export XDG_CONFIG_HOME=~/dotfiles/.config
+      					. ~/.ghcup/env
+            	'';
     enable = true;
     autosuggestion.enable = true;
     # dotDir = "~/dotfiles/.config"
